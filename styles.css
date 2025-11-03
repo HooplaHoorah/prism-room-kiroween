@@ -11,3 +11,7 @@ canvas { display: block; width: 100%; max-width: 960px; height: auto; background
 .high-contrast body, body.high-contrast { background: #000; color: #fff; }
 .hidden { display: none !important; }
 .desc { opacity: 0.9; }
+/* ensure toast can be clicked/dismissed and is readable in high-contrast */
+.toast { pointer-events: auto; }
+body.high-contrast .toast { background: #000; color: #fff; border-color: #fff; }
+.hidden { display: none !important; }
