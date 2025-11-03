@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Prism Room – Kitoween Kernel</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>The Prism Room – Kernel Demo</h1>
+      <p class="desc" id="desc" aria-live="polite">A brief atmospheric slice. Press <strong>Space</strong> to ping. Press <strong>i</strong> to toggle this info.</p>
+      <div class="controls">
+        <code>Space/Click = Ping</code> • <code>i = Info</code> • <code>m = Mute</code> • <code>h = High-contrast</code> • <code>r = Reduced motion</code>
+      </div>
+    </header>
+    <main>
+      <canvas id="room" width="800" height="480" role="img" aria-label="Room canvas"></canvas>
+      <div id="toast" class="toast" aria-live="polite" hidden>Room Complete</div>
+      <div id="overlay" class="overlay" hidden></div>
+    </main>
+    <footer>
+      <small>Kitoween kernel demo. MIT License.</small>
+    </footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
