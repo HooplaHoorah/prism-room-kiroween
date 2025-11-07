@@ -1,4 +1,4 @@
-# The Prism Room – Kitoween Kernel
+# The Prism Room – Kiroween Kernel
 
 A tiny, spooky kernel slice for **The Prism Room (inspired by H.G. Welles' _The Red Room_)** designed for the Kiroween hackathon. It demonstrates a peek into our loop: enter → ping → echo → complete → reset, plus structured Kiro workflow.
 
