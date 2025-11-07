@@ -1,44 +1,41 @@
-# The Prism Room – Kiroween Kernel
+The Prism Room — Kiroween Kernel (v1.3.9)
 
-A tiny, spooky kernel slice for **The Prism Room (inspired by H.G. Welles' _The Red Room_)** designed for the Kiroween hackathon. It demonstrates a peek into our loop: enter → ping → echo → complete → reset, plus structured Kiro workflow.
+A tiny, spooky kernel slice for The Prism Room (inspired by H. G. Welles’ “The Red Room”). A quick peek into the loop: enter → ping → echo → complete → reset. No splash screen, no music—just the core feel and readability we’re shipping for Kiroween.
 
-## Quickstart
+Play: open index.html in a modern desktop browser, or run npx serve . and open the local URL.
+Tip: allow page audio; press Space (or click) to ping.
 
-- Open `index.html` in a browser **or** run a static server (e.g., `npx serve .`).
+HUD & Hotkeys
 
-## Controls
+Top HUD shows Echo • Fear/Resolve • Roll timer • Curse • quick actions.
 
-- `Space` / Click — Ping the room  
-- `i` — Toggle info text  
-- `m` — Toggle mute  
-- `h` — High-contrast mode (adds a body class for accessible contrast)  
-- `r` — Reduced-motion mode (swaps ripple echo for soft pulse)  
-- `Esc` / `Enter` / toast click — Dismiss "Room Complete" toast (auto hides after ~2.8s)
+Alt+I Inventory • Alt+H Help • Alt+R Reset • Last event • Settings (modal)
 
-## Accessibility & Replay Notes
+Settings (modal)
 
-- High-contrast mode adjusts the canvas, toast, and overlays to maintain accessible contrast.
-- Reduced-motion mode replaces the ripple trail with a gentle pulse while keeping the ~3s lifetime.
-- Append `?seed=<int>` (for example, `?seed=42`) to the URL for deterministic room echoes.
-- The in-room timer pauses only while the completion toast is visible and resumes once dismissed.
+Audio pings, Visual flash on Echo, CRT skin, Tube power-on morph
 
-## What This Shows
+Photosensitive mode: reduces/turns off motion & flashes
 
-- Reliable "Room Complete" toast (sticky and dismissable)
-- Ping echo tail (~2–3s), with reduced-motion fallback
-- Description info block with `i` toggle
-- Timer stability and seeded runs (`?seed=42`)
-- Keyboard-only accessibility path
-- Small DEV overlay logging recent state transitions on error
+Hints: Enable hints, nudge on parser fail, suggest next action chips, auto-hint after major events
 
+Reset Room button
 
-## Kiro Usage
-- `/.kiro/spec/Spec.md` – user story + ACs
-- `/.kiro/steering/` – tech, accessibility, testing standards
-- `/.kiro/hooks/on-save.md` – demo hook idea for lint + 🎃 tag
+Parser quick tries
 
-## Repo Layout
-```
+LOOK ROOM • LISTEN • LIGHT PRISM • PULL MIRROR SHARD • FUSE • USE ECHO LENS
+
+What this demo shows
+
+Sticky Room Complete toast (Esc/Enter/click to dismiss)
+
+Ping echo tail (~2–3s) with photosensitive fallback
+
+Readable HUD, INVENTORY: label in caps, autoscroll & event banner polish
+
+Seeded runs for reproducibility: visit index.html?seed=42
+
+Repo layout
 index.html
 styles.css
 script.js
@@ -50,13 +47,12 @@ docs/VIDEO_SCRIPT.md
 .kiro/steering/accessibility.md
 .kiro/steering/testing-standards.md
 .kiro/hooks/on-save.md
-
-
-README.md
 LICENSE
-```
 
-## License
-MIT © 2025-11-03
+Notes
 
-The Prism Room. Trademark 2025. Hoopla Hoorah, LLC. All Rights Reserved.
+The older slide-out settings UI lives on a secondary branch; it is not part of main.
+
+Release: v1.3.9
+
+© 2025 Hoopla Hoorah, LLC. All rights reserved.
