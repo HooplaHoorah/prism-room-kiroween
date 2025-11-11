@@ -1,29 +1,110 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>The Prism Room – Kiroween Kernel</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Prism Room — Kiroween Kernel (v1.3.9 HUD)</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
-<body>
-  <div id="app">
-    <header>
-      <h1>The Prism Room – Kernel Demo</h1>
-      <p class="desc" id="desc" aria-live="polite">A brief atmospheric slice. Press <strong>Space</strong> to ping. Press <strong>i</strong> to toggle this info.</p>
-      <div class="controls">
-        <code>Space/Click = Ping</code> • <code>i = Info</code> • <code>m = Mute</code> • <code>h = High-contrast</code> • <code>r = Reduced motion</code>
-      </div>
+<body class="crt-off">
+  <div id="app" class="grid">
+    <header class="pane header">
+      <div class="title">THE PRISM ROOM <span class="vanity">© 2025 HOOPLA HOORAH. ALL RIGHTS RESERVED.</span> <span class="badge">kernel demo</span></div>
+      <div class="tagline">Red was just the beginning.</div>
     </header>
-    <main>
-      <canvas id="room" width="800" height="480" role="img" aria-label="Room canvas"></canvas>
-      <div id="toast" class="toast" aria-live="polite" hidden>Room Complete</div>
-      <div id="overlay" class="overlay" hidden></div>
+
+    <section id="status" class="pane status">
+      <div>ECHO <span id="echo">1</span></div>
+      <div>Fear <span class="bar"><span id="fear_fill"></span></span><span id="fear_pct">46%</span></div>
+      <div>Resolve <span class="bar"><span id="res_fill"></span></span><span id="res_pct">41%</span></div>
+      <div>Roll <span id="roll">03:30</span></div>
+      <div>Curse <span id="curse">12%</span></div>
+      <div class="hotkeys">Hotkeys: <kbd>Alt</kbd>+<kbd>I</kbd> Inventory • <kbd>Alt</kbd>+<kbd>H</kbd> Help • <kbd>Alt</kbd>+<kbd>R</kbd> Reset</div>
+      <div class="tools">
+        <button id="btnReplay" class="btn" title="Replay last event">🔔 Last</button>
+        <button id="btnSettings" class="btn">⚙ Settings</button>
+      </div>
+    </section>
+
+    <!-- Event banner -->
+    <section class="pane banner-wrap">
+      <div id="eventBanner" class="event-banner" aria-live="polite">
+        <span id="bannerText"></span>
+        <button id="bannerClose" class="banner-close" title="Dismiss">×</button>
+      </div>
+    </section>
+
+    <main class="pane content">
+      <section id="leftCol" class="left">
+        <div id="log" aria-live="polite" aria-label="Game output"></div>
+      </section>
+      <aside id="rightCol" class="right hud">
+        <h3>HUD</h3>
+        <div class="hud-block">
+          <h4>Session Stats</h4>
+          <div class="row"><label>Time to first twist:</label><span id="stat_ttt">—</span></div>
+          <div class="row"><label>Attempts:</label><span id="stat_attempts">0</span></div>
+          <div class="row"><label>Parser fails:</label><span id="stat_fails">0</span></div>
+          <div class="row"><label>Hints offered / taken:</label><span id="stat_hints">0 / 0</span></div>
+          <div class="row"><label>Room state:</label><span id="stat_room">In progress</span></div>
+        </div>
+        <div class="hud-block">
+          <h4>Status</h4>
+          <div class="row"><label>Last event:</label><span id="hud_last">—</span></div>
+          <div class="row"><label>Suggestion:</label><span id="hud_suggest">—</span></div>
+        </div>
+        <div class="hud-block">
+          <h4>Today</h4>
+          <ul class="tasks" id="tasks">
+            <li>LISTEN × 1</li>
+            <li>Solve 1 room</li>
+            <li>Fuse 1 artifact</li>
+          </ul>
+        </div>
+        <div class="hud-block">
+          <h4>Quick Tips</h4>
+          <div id="chips" class="chips"></div>
+        </div>
+      </aside>
     </main>
-    <footer>
-      <small>Kiroween kernel demo. MIT License.</small>
+
+    <section class="pane prompt">
+      <div id="prompt">
+        <span class="caret">&gt;</span>
+        <input id="input" type="text" autocomplete="off" spellcheck="false" aria-label="Command input" placeholder="type a command (HELP for verbs)"/>
+      </div>
+    </section>
+
+    <footer class="pane footer">
+      <div>Try: <code>LOOK ROOM</code> • <code>LISTEN</code> • <code>LIGHT CANDLE WITH MATCHBOOK</code> • <code>LIGHT PRISM</code> • <code>PULL MIRROR SHARD</code> • <code>FUSE</code> • <code>USE ECHO LENS</code></div>
     </footer>
   </div>
+
+  <!-- Settings Modal -->
+  <dialog id="settingsModal">
+    <form method="dialog" id="settingsForm">
+      <h3>Settings</h3>
+      <label><input type="checkbox" id="chkAudio" checked/> Audio pings</label>
+      <label><input type="checkbox" id="chkFlash" checked/> Visual flash on Echo</label>
+      <label><input type="checkbox" id="chkCRT" checked/> CRT skin (scanlines + vignette)</label>
+      <label><input type="checkbox" id="chkTube" checked/> Tube power-on morph on Echo</label>
+      <label><input type="checkbox" id="chkPhotosafe"/> Photosensitive mode (reduce/disable motion & flashes)</label>
+      <hr/>
+      <strong>Hints</strong>
+      <label><input type="checkbox" id="chkHints" checked/> Enable hints</label>
+      <label class="indent"><input type="checkbox" id="chkNudges" checked/> Nudge on parser fail</label>
+      <label class="indent"><input type="checkbox" id="chkChips" checked/> Suggest next action chips</label>
+      <label class="indent"><input type="checkbox" id="chkEvents" checked/> Auto-hint after major events</label>
+      <menu>
+        <button value="cancel" class="btn">Close</button>
+        <button id="btnReset" value="default" class="btn btn-warn" title="Reset room">Reset Room</button>
+      </menu>
+      <p class="tiny">Photosensitive mode disables flash/morph and reduces any animated effects.</p>
+    </form>
+  </dialog>
+
   <script src="script.js"></script>
+
+  <!-- Settings Gear + Slideout Panel (v1.3.x) -->
 </body>
 </html>
