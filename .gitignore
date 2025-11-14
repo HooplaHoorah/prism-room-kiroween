@@ -1,0 +1,7 @@
+# Local hook demo log
+hooks-log.txt
+
+# OS / editor cruft (safe to ignore)
+.DS_Store
+Thumbs.db
+.vscode/
