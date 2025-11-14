@@ -5,3 +5,5 @@ hooks-log.txt
 .DS_Store
 Thumbs.db
 .vscode/
+
+.kiro/hooks/*.kiro.hook
