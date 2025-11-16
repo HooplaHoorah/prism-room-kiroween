@@ -8,6 +8,8 @@ A tiny, spooky kernel slice for **The Prism Room** (inspired by H. G. Welles’ 
 
 **Category:** Skeleton Crew • **Release:** v1.3.9
 
+**Changelog:** see [CHANGELOG.md](./CHANGELOG.md).
+
 ---
 
 ## Play it
