@@ -17,6 +17,7 @@ A tiny, spooky kernel slice for **The Prism Room** (inspired by H. G. Welles’ 
 - Allow page audio. Press **Space** (or click) to **Ping**.
 
 > Tip: seeded runs for reproducibility — append `?seed=<int>` (e.g., `index.html?seed=42`).
+> ➡️ Want to build your own room? Start with [ROOM_TEMPLATE.md](./docs/ROOM_TEMPLATE.md) and the Kiro spec in `.kiro/spec/Spec.md`.
 
 ---
 
