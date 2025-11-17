@@ -88,6 +88,18 @@ We keep the kernel small and portable with:
 
 This is a **Skeleton Crew** starter meant to be cloned into future rooms without rewriting the core loop.
 
+### Optional: local Kiro hook demo
+
+If you want to show the **“hook fires on save”** moment:
+
+1. Open **Kiro → Agent Hooks → Create hook**.
+2. Open `docs/examples/log-on-save.kiro.hook` and copy its contents.
+3. Paste that text into Kiro’s “Create an agent hook” box and generate the hook.
+4. Save any file in the repo (for example `script.js`) and open `hooks-log.txt` to see the timestamped log line.
+
+Runtime hooks live locally in `.kiro/hooks/` and are **gitignored** (`.kiro/hooks/*.kiro.hook`).  
+The example hook file in `docs/examples/` is committed so teammates and judges can easily recreate the demo.
+
 ---
 
 ## Contributing / Dev
