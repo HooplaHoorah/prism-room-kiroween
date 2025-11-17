@@ -1,0 +1,18 @@
+# Example Kiro Hook — Log on Save
+
+# Paste this into Kiro's “Create an agent hook” text box to generate the hook.
+
+Name: Log on Save
+Trigger: on file save for any file (glob **/*)
+Action: run shell command
+
+# Windows (PowerShell)
+powershell -NoProfile -Command "$ts=Get-Date -Format s; Add-Content -Path 'hooks-log.txt' -Value \"hook fired $ts\""
+
+# macOS / Linux (sh)
+sh -lc 'echo "hook fired $(date +%FT%T)" >> hooks-log.txt'
+
+Notes:
+- Creates/updates `hooks-log.txt` at the repo root.
+- `hooks-log.txt` is ignored by Git (see `.gitignore`).
+- This example file is safe to commit; the *runtime* hook lives in `.kiro/hooks/` and is ignored.
